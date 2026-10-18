@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>직무스트레스 원인 조사</title>
+  <meta name="description" content="10문항으로 알아보는 우리 직장의 스트레스 원인 — 익명 설문" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <section id="intro" class="card">
+      <p class="eyebrow">직원 익명 설문 · 10문항 · 약 2분</p>
+      <h1>우리 직장의<br />스트레스 원인 조사</h1>
+      <p class="lead">
+        업무량, 재량권, 관계, 보상, 조직문화 등 일터의 스트레스 요인을 살펴보는 설문입니다.
+        이름은 묻지 않으며, 결과는 부서·개인을 식별하지 않는 통계로만 활용됩니다.
+      </p>
+      <form id="profile" class="profile">
+        <label>소속 부서 <span class="opt">(선택)</span>
+          <input name="department" maxlength="40" placeholder="예: 영업팀" />
+        </label>
+        <div class="row">
+          <label>직급
+            <select name="position">
+              <option value="">선택 안 함</option>
+              <option>사원</option><option>주임/대리</option><option>과장/차장</option>
+              <option>부장 이상</option><option>기타</option>
+            </select>
+          </label>
+          <label>근속 연수
+            <select name="tenure">
+              <option value="">선택 안 함</option>
+              <option>1년 미만</option><option>1~3년</option><option>3~5년</option>
+              <option>5~10년</option><option>10년 이상</option>
+            </select>
+          </label>
+        </div>
+        <label class="consent">
+          <input type="checkbox" name="consent" required />
+          응답 내용이 익명으로 저장되어 직무환경 개선을 위한 통계에 활용되는 것에 동의합니다.
+        </label>
+        <button class="btn primary" type="submit">설문 시작하기</button>
+      </form>
+      <p class="fine">최근 한 달 동안의 직장 생활을 떠올리며 응답해 주세요.</p>
+    </section>
+
+    <section id="quiz" class="card" hidden>
+      <div class="progress"><div id="bar"></div></div>
+      <p class="count"><span id="qnum">1</span> / 10</p>
+      <p id="qfactor" class="eyebrow"></p>
+      <h2 id="qtext"></h2>
+      <div id="choices" class="choices four" role="radiogroup"></div>
+      <div class="nav"><button id="prev" class="btn ghost" type="button">이전</button></div>
+    </section>
+
+    <section id="opinion" class="card" hidden>
+      <p class="eyebrow">마지막 질문 (선택)</p>
+      <h2>가장 큰 스트레스 원인이나<br />회사에 바라는 개선점이 있다면 적어 주세요.</h2>
+      <textarea id="comment" maxlength="1000" placeholder="자유롭게 적어 주세요. 비워 두셔도 됩니다."></textarea>
+      <div class="nav" style="display:flex; gap:8px; justify-content:space-between">
+        <button id="back" class="btn ghost" type="button">이전</button>
+        <button id="submit" class="btn primary" type="button">제출하고 결과 보기</button>
+      </div>
+    </section>
+
+    <section id="result" class="card" hidden>
+      <p class="eyebrow">나의 직무스트레스 요인</p>
+      <div class="score">
+        <span id="rtotal" class="big"></span><span class="of">/ 100</span>
+        <span id="rlevel" class="badge"></span>
+      </div>
+      <p id="rdesc" class="lead"></p>
+      <h3>스트레스가 큰 요인 TOP 3</h3>
+      <ol id="top3" class="top3"></ol>
+      <div id="factors" class="factors"></div>
+      <p id="saveStatus" class="fine"></p>
+      <a class="btn ghost" href="results.html">전체 집계 결과 보기</a>
+      <p class="fine disclaimer">
+        이 설문은 한국형 직무스트레스 측정도구(KOSS, 산업안전보건공단 KOSHA GUIDE)의 영역 구성과
+        Karasek 요구-통제 모델, Siegrist 노력-보상 불균형 모델, NIOSH 직무스트레스 모델을 참고해
+        새로 작성한 조사용 도구입니다. 표준화된 검사나 의학적 진단을 대신하지 않습니다.
+        점수가 높을수록 스트레스 요인이 크다는 뜻입니다.
+      </p>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="items.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
